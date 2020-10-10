@@ -1,0 +1,364 @@
+
+extends markdown
+extends sh
+extends r
+   
+    
+###########################################################################
+#                          SNIPPETS for RMARKDOWN                          #
+###########################################################################
+snippet rp "R plot"
+\`\`\`\{r ${1:`!v expand("%:t:r")`_${2:Title},} dev=${3:'svg'}${4:, warning=${5:FALSE}}\}
+${0:${VISUAL}}
+\`\`\`
+endsnippet
+
+snippet source "include source code without output" !b
+\`\`\`{r, echo=F, cache=FALSE, results='asis'}
+source_code($1)
+\`\`\`
+endsnippet
+
+snippet c "concatenate vector" w
+c('$1'$0)
+endsnippet
+
+snippet , "quoted comma" i
+, '$1'$0
+endsnippet
+
+
+snippet gg2
+[ggplot2][]
+endsnippet
+
+
+snippet ggp
+ggplot( aes( $1 )) +
+endsnippet
+
+snippet ggv
+[ggvis][]
+endsnippet
+
+snippet header "" b
+---
+title:           $1
+author:          Dennis Wollersheim 
+date:            `date +%d.%m.%Y`
+linkcolor:       cyan
+citecolor:       grey
+output:
+	pdf_document:
+		highlight:   zenburn
+---
+
+${2:\tableofcontents}
+
+$0
+endsnippet
+
+
+snippet toc "Table of Contents" b
+
+\tableofcontents
+
+endsnippet
+
+
+snippet html "HTML Export Config" b
+output:
+	html_document:
+	toc:               true
+	toc_float:
+		collapsed:       false
+		smooth_scroll:   true
+		theme:           united
+		highlight:       zenburn
+		number_section:  true
+endsnippet
+
+
+snippet presi "Output config for shiny presentation" b
+output:
+  slidy_presentation:
+    incremental: true
+runtime: shiny
+endsnippet
+
+ 
+snippet code "Code snippet" b
+\`\`\`{${1:r Code Chunk}, echo=${2:TRUE}}
+\`\`\`
+endsnippet
+
+
+snippet quote "Quotation"
+"${1:${VISUAL:Quote}}" -[@${2:authoryear}]
+endsnippet
+
+
+snippet ref "Autocomplete from References"
+-[@`!p
+data_in = t[1]
+snip.rv = fuzzy_complete(data_in, poll(data_in))
+`]
+$1
+endsnippet
+
+
+snippet hr "Horizontal Row" b
+
+***
+
+endsnippet
+
+snippet h1 "Header h1" b
+# ${1:Header name}
+
+$0
+endsnippet
+
+snippet h1i "Header h1 with id" b
+# ${1:Header name} {#${2:id}}
+
+$0
+endsnippet
+
+snippet h2 "Header h2" b
+## ${1:Header name}
+
+$0
+endsnippet
+
+snippet h2i "Header h2 with id" b
+## ${1:Header name} {#${2:id}}
+
+$0
+endsnippet
+
+snippet h3 "Header h3" b
+### ${1:Header name}
+
+$0
+endsnippet
+
+snippet h3i "Header h3 with id" b
+### ${1:Header name} {#${2:id}}
+
+$0
+endsnippet
+
+snippet h4 "Header h4" b
+#### ${1:Header name}
+
+$0
+endsnippet
+
+snippet h4i "Header h4 with id" b
+#### ${1:Header name} {#${2:id}}
+
+$0
+endsnippet
+
+snippet h5 "Header h5" b
+##### ${1:Header name}
+
+$0
+endsnippet
+
+snippet h5i "Header h5 with id" b
+##### ${1:Header name} {#${2:id}}
+
+$0
+endsnippet
+
+snippet h6 "Header h6" b
+###### ${1:Header name}
+
+$0
+endsnippet
+
+snippet h6i "Header h6 with id" b
+###### ${1:Header name} {#${2:id}}
+
+$0
+endsnippet
+
+snippet hrlnk "Header ID Link"
+[${1:Text}](#${2:Header ID})$0
+endsnippet
+
+snippet hrlac "Header ID Link auto-complete"
+[${1:Text}](#${1/(\w+)(\s*)/\L$1\E(?2:-)/g})$0
+endsnippet
+
+# ==================== Links ====================
+
+snippet lnk "Inline Link"
+[${1:${VISUAL:Text}}](${3:http://${2:www.url.com}}${4/.+/ "/}${4:opt title}${4/.+/"/})$0
+endsnippet
+
+snippet rlnk "Reference-style link"
+[${1:${VISUAL:Text}}][${2:Reference}]$0
+endsnippet
+
+snippet rdef "Reference-style link ID"
+[${1}]: ${3:http://${2:www.url.com}}
+$0
+endsnippet
+
+snippet flnk "Fast link"
+<http://${1:url}>$0
+endsnippet
+
+
+# ==================== Emphasis ====================
+
+snippet * "Italic"
+*${1:${VISUAL:Text}}*$0
+endsnippet
+
+snippet _ "Strong"
+__${1:${VISUAL:Text}}__$0
+endsnippet
+
+snippet *_ "Italic and Strong"
+***${1:${VISUAL:Text}}***$0
+endsnippet
+
+
+# ==================== Quotes ====================
+
+snippet > "Quote" !b
+ > ${1:${VISUAL:Text}:${VISUAL:Text}}
+
+$0
+endsnippet
+
+
+# ==================== Lists ====================
+
+snippet ol "Ordered List"
+1. ${1}
+1. ${2}
+1. ${3}
+1. ${4}
+$0
+endsnippet
+
+snippet ul "Unordered List"
+* ${1}
+* ${2}
+* ${3}
+* ${4}
+$0
+endsnippet
+
+
+# ==================== Definition Lists ====================
+
+snippet dl "Definition List" !b
+${1:Word 1}
+: ${2:Definition}
+${3:Word 2}
+: ${4:Definition}
+${5:Word 3}
+: ${6:Definition}
+${7:Word 4}
+: ${8:Definition}
+
+$0
+endsnippet
+
+
+# ==================== Images ====================
+
+snippet img! "Image"
+![${1:pic alt}](${2:path}${3/.+/ "/}${3:opt title}${3/.+/"/})$0
+endsnippet
+
+snippet ilnk "Reference-style Image"
+![${1:${VISUAL:Text}}][${2:Reference}] $0
+endsnippet
+
+snippet idef "Reference-style Image ID"
+  [${1}]: ${2:path}${3/.+/ "/}${3:opt title}${3/.+/"/}
+  $0
+endsnippet
+
+snippet yaml
+---
+output: ${1:html_document}
+---
+endsnippet
+
+
+###########################################################################
+#                          SNIPPETS for RMARKDOWN                          #
+###########################################################################
+
+snippet ` "Header between these graphs"
+\`\`\`
+
+# ${1}
+
+\`\`\`\{r ${1}\}
+endsnippet
+
+
+snippet child "include child document"
+\`\`\`\{r child="${1:child}${2:.Rmd}"}
+\`\`\`
+endsnippet
+
+snippet xtable "insert xtable"
+\`\`\`{r echo=F, cache=F, results='asis'}
+print(xtable(${0:${VISUAL}}), type='html', include.rownames=FALSE) \`\`\`
+endsnippet
+
+
+snippet beamer "Output config for beamer presentation" b
+---
+title:           "${1}"
+author:          `git config --global user.name`
+date:            `date +%d.%m.%Y`
+output:          beamer_presentation
+---
+endsnippet
+ 
+snippet kable "kabelise table" 
+%>%
+kableExtra::kable()
+endsnippet
+
+
+global !p
+def create_table(snip):
+# retrieving single line from current string and treat it like tabstops count
+  placeholders_string = snip.buffer[snip.line].strip()[2:].split("x",1)
+  rows_amount = int(placeholders_string[0])
+  columns_amount = int(placeholders_string[1])
+
+  # erase current line
+  snip.buffer[snip.line] = ''
+
+  # create anonymous snippet with expected content and number of tabstops
+  anon_snippet_title = ' | '.join(['$' + str(col) for col in range(1,columns_amount+1)]) + "\n"
+  anon_snippet_delimiter = ':-|' * (columns_amount-1) + ":-\n"
+  anon_snippet_body = ""
+  for row in range(1,rows_amount+1):
+      anon_snippet_body += ' | '.join(['$' + str(row*columns_amount+col) for col in range(1,columns_amount+1)]) + "\n"
+  anon_snippet_table = anon_snippet_title + anon_snippet_delimiter + anon_snippet_body
+
+  # expand anonymous snippet
+  snip.expand_anon(anon_snippet_table)
+endglobal
+
+pre_expand "create_table(snip)"
+snippet "tb(\d+x\d+)" "Customizable table" br
+endsnippet
+
+
+
+

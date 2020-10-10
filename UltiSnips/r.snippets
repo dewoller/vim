@@ -1,0 +1,20 @@
+extends sh
+
+
+snippet % "assign"
+%>% 
+{ . } -> ${1}
+endsnippet
+
+snippet ### "comment line"
+################################################################################
+endsnippet
+
+
+snippet xc "copy to clipboard"
+%>% clipr::write_clip()
+endsnippet
+
+
+
+
