@@ -1,6 +1,7 @@
 
 augroup MyAutoCmd
 
+    autocmd BufNewFile,BufRead *.vim set ft=vim
     autocmd BufNewFile,BufRead *.Rnw setlocal ft=tex
 
     autocmd BufRead,BufNewFile *.scad set filetype=openscad

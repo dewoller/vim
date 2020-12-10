@@ -1,5 +1,4 @@
 " command line alias
-cnoremap w!! w !sudo tee % >/dev/null
 
 nnoremap <C-C> <ESC>
 inoremap <C-C> <ESC>
@@ -16,6 +15,8 @@ nnoremap  ]b :bp<CR>
 nnoremap  [b :bn<CR>
 "delete buffer
 nnoremap <C-x>  :bd<CR>
+imap <C-d>  :b#<CR>:bd#<CR>
+nmap <C-d>  <c-o>:b#<CR>:bd#<CR>
 
 "switch window
 tnoremap <C-h> <C-\><C-N><C-w>h
@@ -85,19 +86,19 @@ nmap <F4>  p0:s/ </\t\t/:s/>/// $Nlvl:s/ /\t/yy
 "nnoremap ` '
 
 
-" Fix command typos (stolen from Adam Katz)
-inoremap jj <ESC>
-inoremap kk <ESC>
-inoremap lll <ESC>
-inoremap hh <ESC>
-"
-" Alternatives to using Ctrl-[ for esc:
-imap jkl <esc>
-imap jlk <esc>
-imap kjl <esc>
-imap klj <esc>
-imap lkj <esc>
-imap ljk <esc>
+" " Fix command typos (stolen from Adam Katz)
+" "inoremap jj <ESC>
+" inoremap kk <ESC>
+" inoremap lll <ESC>
+" inoremap hh <ESC>
+" "
+" " Alternatives to using Ctrl-[ for esc:
+" imap jkl <esc>
+" imap jlk <esc>
+" imap kjl <esc>
+" imap klj <esc>
+" imap lkj <esc>
+" imap ljk <esc>
 
 " move to previous buffer
 nnoremap <C-u> <C-^>

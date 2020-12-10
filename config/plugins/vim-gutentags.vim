@@ -1,3 +1,5 @@
+
+"let g:gutentags_trace = 1
 let g:gutentags_cache_dir = '~/.cache/vim/tags'
 let g:gutentags_add_default_project_roots = 0
 let g:gutentags_project_root = ['.git']

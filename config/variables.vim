@@ -87,8 +87,8 @@ set hidden
 set shortmess=aFc
 set signcolumn=yes
 set completefunc=emoji#complete
-set completeopt =longest,menu
-set completeopt-=preview
+"set completeopt =longest,menu
+"set completeopt-=preview
 set list
 set listchars=tab:»·,nbsp:+,trail:·,extends:→,precedes:←
 

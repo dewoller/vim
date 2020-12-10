@@ -5,6 +5,8 @@ call plug#begin('~/vimfiles/plugged')
 
 " Make sure you use single quotes
 
+Plug 'ludovicchabant/vim-gutentags'
+
 Plug 'jalvesaq/Nvim-R', {'branch': 'stable'}
 Plug 'gaalcaras/ncm-R'
 Plug 'ncm2/ncm2-bufword'
@@ -27,7 +29,6 @@ Plug 'easymotion/vim-easymotion'
 Plug 'svermeulen/vim-cutlass'
 Plug 'svermeulen/vim-yoink'
 Plug 'svermeulen/vim-subversive'
-Plug 'ludovicchabant/vim-gutentags'
 
 "Plug 'ncm2/ncm2-ultisnips'
 "Plug 'svermeulen/ncm2-yoink'
@@ -39,7 +40,8 @@ Plug 'honza/vim-snippets'
 
   Plug 'vim-airline/vim-airline'
 "  Plug 'vim-airline/vim-airline-themes'
-  Plug 'tpope/vim-fugitive'
+ Plug 'tpope/vim-fugitive'
+ Plug 'tpope/vim-surround'
 "  Plug 'itchyny/lightline.vim'
 "  Plug 'mhinz/vim-signify'
 

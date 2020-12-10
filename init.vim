@@ -15,8 +15,9 @@ runtime! config/variables.vim
 " PACKAGES
 runtime! config/packages.vim
 
-" SETTINGS
-runtime!  config/filetype.vim config/mappings.vim config/allkey.vim
+" SETTINGS 
+runtime!  config/filetype.vim config/mappings.vim config/allkey.vim config/functions.vim
+
 
 " MODULES
 runtime! config/modules/**/*.vim config/languages/**/*.vim config/plugins/**/*.vim

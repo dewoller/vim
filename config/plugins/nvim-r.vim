@@ -7,6 +7,7 @@ echom "loading nvim-r"
 let R_assign = 0
 let R_nvim_wd = -1
 let R_auto_start = 1
+let R_clear_line = 1
 
 
 " select starting from the first chunk, and continue selecting the next pipy
@@ -24,9 +25,10 @@ endfunction
 "find the last %>% the line
 nnoremap Q mz0/%\(>\\|\$\)%<cr>$Nhv{:call SendChunkToRDennis()<cr>`z<esc>
 nnoremap Z mz0/%\(>\\|\$\)%<cr>$Nhi%>% View<esc>v{:call SendChunkToRDennis()<cr><esc>u`z<esc>
+nnoremap V mz0/%\(>\\|\$\)%<cr>$Nhi%>% View<esc>v{:call SendChunkToRDennis()<cr><esc>u`z<esc>
 
 " make a file for this function
-nnoremap V ? <cr>l"by$"ayw:enew<cr>"ap:s/^/R\//<cr>:s/$/.R/<cr>"ay$dd"bp:s/(/ <- function(/<cr>:s/,\? *$/ {\r\r\r}/<cr>:execute 'write' @a<cr>
+nnoremap <LocalLeader>rv ? <cr>l"by$"ayw:enew<cr>"ap:s/^/R\//<cr>:s/$/.R/<cr>"ay$dd"bp:s/(/ <- function(/<cr>:s/,\? *$/ {\r\r\r}/<cr>:execute 'write' @a<cr>
 
 
 
@@ -43,6 +45,7 @@ endfunction
 
 nmap <silent> <LocalLeader>rk :call RAction("drake::readd")<CR>
 nmap <silent> <LocalLeader>ri :call RAction("drake::loadd")<CR>
+nmap <silent> <LocalLeader>rl :call g:SendCmdToR('source("_drake.R")')<CR>
 nmap <silent> <LocalLeader>rd :call RAction("debug")<CR>
 nmap <silent> <LocalLeader>pg :call RAction("dplyr::glimpse")<CR>
 nmap <silent> <LocalLeader>ps :call RAction("summary")<CR>
@@ -129,8 +132,9 @@ nmap <silent> <LocalLeader>rs         :call RAction("summary")<CR>
 nmap <silent> <LocalLeader>rt         :call RAction("str")<CR>
 nmap <silent> <LocalLeader>sa         :call SendSelectionToR("echo", "down", "normal")<CR>
 nmap <silent> <LocalLeader>sd         :call SendSelectionToR("silent", "down", "normal")<CR>
-nmap <silent> <LocalLeader>se         :call SendSelectionToR("echo", "stay", "normal")<CR>
+nmap <silent> <LocalLeader>se         :call SendSelectionToR("echo", "stay", "NewtabInsert")<CR>
 nmap <silent> <LocalLeader>ss         :call SendSelectionToR("silent", "stay", "normal")<CR>
+nmap <silent> <LocalLeader>so         :call SendSelectionToR("echo", "stay", "normal")<CR>
 nmap <silent> <LocalLeader>vv         :call RAction("viewobj", ", howto='vsplit'")<CR>
 nmap <silent> <LocalLeader>xx         :call RComment("normal")<CR>
 nmap <silent> <LocalLeader>pp         :call SendParagraphToR("silent", "stay")<CR>
@@ -139,25 +143,3 @@ vnoremap <silent> <LocalLeader>ss         <Esc>:call SendSelectionToR("silent", 
 nmap <silent> <LocalLeader>ch         :call SendFHChunkToR()<CR>
 
 
-function! s:ShowMaps()
-  let old_reg = getreg("a")          " save the current content of register a
-  let old_reg_type = getregtype("a") " save the type of the register as well
-  try
-    redir @a                           " redirect output to register a
-    " Get the list of all key mappings silently, satisfy "Press ENTER to continue"
-    silent map | call feedkeys("\<CR>")    
-    redir END                          " end output redirection
-    vnew                               " new buffer in vertical window
-    put a                              " put content of register
-    " Sort on 4th character column which is the key(s)
-    %!sort -k1.4,1.4
-  finally                              " Execute even if exception is raised
-    call setreg("a", old_reg, old_reg_type) " restore register a
-  endtry
-endfunction
-com! ShowMaps call s:ShowMaps()      " Enable :ShowMaps to call the function
-
-nnoremap \m :ShowMaps<CR>            " Map keys to call the function
-
-
-"call coc#config('coc.preferences', {  'r.lintr.enabled': 0})
