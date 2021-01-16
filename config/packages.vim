@@ -44,11 +44,7 @@ Plug 'honza/vim-snippets'
  Plug 'tpope/vim-surround'
 "  Plug 'itchyny/lightline.vim'
 "  Plug 'mhinz/vim-signify'
-
-
-" On-demand loading
-"Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
-
+ Plug 'preservim/nerdcommenter'
 
 " Initialize plugin system
 call plug#end()
