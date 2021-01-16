@@ -27,6 +27,9 @@ nnoremap Q mz0/%\(>\\|\$\)%<cr>$Nhv{:call SendChunkToRDennis()<cr>`z<esc>
 nnoremap Z mz0/%\(>\\|\$\)%<cr>$Nhi%>% View<esc>v{:call SendChunkToRDennis()<cr><esc>u`z<esc>
 nnoremap V mz0/%\(>\\|\$\)%<cr>$Nhi%>% View<esc>v{:call SendChunkToRDennis()<cr><esc>u`z<esc>
 
+" run the line marked by 1
+nmap <C-1> mj`1Q`j
+
 " make a file for this function
 nnoremap <LocalLeader>rv ? <cr>l"by$"ayw:enew<cr>"ap:s/^/R\//<cr>:s/$/.R/<cr>"ay$dd"bp:s/(/ <- function(/<cr>:s/,\? *$/ {\r\r\r}/<cr>:execute 'write' @a<cr>
 

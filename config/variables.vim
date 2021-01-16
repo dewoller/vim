@@ -34,6 +34,10 @@ autocmd FocusGained,BufEnter,CursorHold,CursorHoldI * if !bufexists("[Command Li
 autocmd FileChangedShellPost *
       \ echohl WarningMsg | echo "File changed on disk. Buffer reloaded." | echohl None
 
+autocmd BufWinEnter * call jobstart(["c:\\Users\\dwol3009\\bin\\clock_edit.bat", expand("%:p")])
+autocmd BufWinLeave * call jobstart(["c:\\Users\\dwol3009\\bin\\clock_close.bat", expand("%:p")])
+autocmd ExitPre * !c:\Users\dwol3009\bin\clock_close.bat %:p
+
 
 set autowrite
 set confirm
@@ -49,7 +53,9 @@ if has('clipboard')
 endif
 set history=2000
 set number
-set timeout ttimeout
+"set timeout ttimeout
+set notimeout 
+set nottimeout
 set cmdheight=2         " Height of the command line
 set timeoutlen=1000
 set ttimeoutlen=10
