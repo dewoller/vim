@@ -1,5 +1,6 @@
 let s:base_font = "GuiFont! Source\ Code\ Pro:h" 
 let s:base_font = "GuiFont! Source\ Code\ Pro\ Semibold:h"
+let s:base_font = "GuiFont! Lucida\ Sans\ Typewriter:h" 
 let s:fontsize = 12
 "execute "GuiFont! Source\ Code\ Pro\ Semibold:h12" 
 "execute "GuiFont! Source\ Code\ Pro\ Medium:h12" 
