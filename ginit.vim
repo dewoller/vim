@@ -35,3 +35,7 @@ inoremap <C-kMinus> <Esc>:call AdjustFontSize(-1)<CR>a"
 
 set guioptions-=e
 set nocursorline
+
+set mouse=a
+map <ScrollWheelUp> <C-Y>
+map <ScrollWheelDown> <C-E>
