@@ -4,10 +4,21 @@
 "
 echom "loading nvim-r"
 " add settings for nvim-r plugin (auto-start with .r and .rmd files)
+
+function! s:myStartR()
+	if string(g:SendCmdToR) == "function('SendCmdToR_fake')" 
+echom "before sleep"
+		:sleep 2
+		call StartR("R") 
+echom "after start"
+	endif
+endfunction
+
 "
-autocmd FileType r if string(g:SendCmdToR) == "function('SendCmdToR_fake')" | call StartR("R") | endif
-autocmd FileType rmd if string(g:SendCmdToR) == "function('SendCmdToR_fake')" | call StartR("R") | endif
+autocmd FileType r call <SID>myStartR()
+autocmd FileType rmd call <SID>myStartR()
 autocmd VimLeave * if exists("g:SendCmdToR") && string(g:SendCmdToR) != "function('SendCmdToR_fake')" | call RQuit("nosave") | endif
+
 
 let R_assign = 0
 let R_nvim_wd = -1
