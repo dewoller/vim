@@ -9,7 +9,7 @@ function! s:myStartR()
 	if string(g:SendCmdToR) == "function('SendCmdToR_fake')" 
 		:sleep 2
 		call StartR("R") 
-		call g:SendCmdToR('source("_drake.R"')
+    call SendCmdToR('source("_drake.R"')
 	endif
 endfunction
 
@@ -63,7 +63,8 @@ endfunction
 
 nmap <silent> <LocalLeader>rk :call RAction("drake::readd")<CR>
 nmap <silent> <LocalLeader>ri :call RAction("drake::loadd")<CR>
-nmap <silent> <LocalLeader>rl :call g:SendCmdToR('source("_drake.R")')<CR>
+nmap <silent> <LocalLeader>rl :call RAction("drake::loadd")<CR>
+nmap <silent> <LocalLeader>r1 :call g:SendCmdToR('source("_drake.R")')<CR>
 nmap <silent> <LocalLeader>rd :call RAction("debug")<CR>
 nmap <silent> <LocalLeader>pg :call RAction("dplyr::glimpse")<CR>
 nmap <silent> <LocalLeader>ps :call RAction("summary")<CR>
