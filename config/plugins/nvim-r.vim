@@ -7,10 +7,9 @@ echom "loading nvim-r"
 
 function! s:myStartR()
 	if string(g:SendCmdToR) == "function('SendCmdToR_fake')" 
-echom "before sleep"
 		:sleep 2
 		call StartR("R") 
-echom "after start"
+		call g:SendCmdToR('source("_drake.R"')
 	endif
 endfunction
 
