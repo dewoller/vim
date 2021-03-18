@@ -1,6 +1,8 @@
 "Plugin key settings
 
+vmap <silent>sf        <Plug>SQLU_Formatter<CR>
 
+    
 nnoremap <silent> <leader>fc :Colors<CR>
 nnoremap <silent> <leader>fb :Buffers<CR>
 nnoremap <silent> <leader>ff :call Fzf_dev()<CR>
@@ -9,7 +11,7 @@ nnoremap <silent> <leader>fw :Rg <C-R><C-W><CR>
 
 
 
-nnoremap <silent> <leader>m :MundoToggle<CR>
+nnoremap <silent> <leader>u :MundoToggle<CR>
 
 
 

@@ -39,7 +39,7 @@ endfunction
 
 "find the last %>% the line
 nnoremap Q mz0/%\(>\\|\$\)%<cr>$Nhv{:call SendChunkToRDennis()<cr>`z<esc>
-nnoremap Z mz0/%\(>\\|\$\)%<cr>$Nhi%>% View<esc>v{:call SendChunkToRDennis()<cr><esc>u`z<esc>
+nnoremap Z mz0/%\(>\\|\$\)%<cr>$Nhi%>% DT::datatable()<esc>v{:call SendChunkToRDennis()<cr><esc>u`z<esc>
 nnoremap V mz0/%\(>\\|\$\)%<cr>$Nhi%>% View<esc>v{:call SendChunkToRDennis()<cr><esc>u`z<esc>
 
 " run the line marked by 1
@@ -48,19 +48,26 @@ nmap <C-1> mj`1Q`j
 " make a file for this function
 nnoremap <LocalLeader>rv ? <cr>l"by$"ayw:enew<cr>"ap:s/^/R\//<cr>:s/$/.R/<cr>"ay$dd"bp:s/(/ <- function(/<cr>:s/,\? *$/ {\r\r\r}/<cr>:execute 'write' @a<cr>
 
+"imap <C-c><C-c> <esc><C-w>ji<cr>Q<cr><C-c><C-w>h
+"nmap <C-c><C-c> <C-w>ji<cr>Q<cr><C-c><C-w>h
 
 
 function! RunShinyApp() 
-    let path='runApp(' + expand('%:p:h') +  ')'
-    call g:SendCmdToR( path )
+    let cmd='shiny::runApp(r"(' . expand('%:p:h') .  ')")'
+    echo cmd
+    call g:SendCmdToR( cmd )
 endfunction
 
-function! RunShinyApp1() 
-    let path='runApp(' + expand('%:p:h') +  ')'
-    call g:SendCmdToR( path )
+function! RenderRmarkdown() 
+    let cmd='browseURL( rmarkdown::render(r"(' . expand('%:p') .  ')", output_dir="output/"))'
+    echo cmd
+    call g:SendCmdToR( cmd )
 endfunction
-"map <silent> <LocalLeader>p :r !Rscript --vanilla -e 'library(datapasta); df_paste()'<cr>
 
+
+nmap <silent> <LocalLeader>rr :call RenderRmarkdown()<CR>
+nmap <silent> <LocalLeader>ry :call RunShinyApp()<CR>
+nmap <silent> <LocalLeader>ny :call RunShinyApp()<CR>
 nmap <silent> <LocalLeader>rk :call RAction("drake::readd")<CR>
 nmap <silent> <LocalLeader>ri :call RAction("drake::loadd")<CR>
 nmap <silent> <LocalLeader>rl :call RAction("drake::loadd")<CR>
