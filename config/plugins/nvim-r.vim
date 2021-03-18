@@ -69,11 +69,6 @@ nmap <silent> <LocalLeader>rl :call RAction("targets::tar_load")<CR>
 nmap <silent> <LocalLeader>dk :call RAction("drake::readd")<CR>
 nmap <silent> <LocalLeader>di :call RAction("drake::loadd")<CR>
 nmap <silent> <LocalLeader>dl :call RAction("drake::loadd")<CR>
-=======
-nmap <silent> <LocalLeader>rk :call RAction("drake::readd")<CR>
-nmap <silent> <LocalLeader>ri :call RAction("drake::loadd")<CR>
-nmap <silent> <LocalLeader>rl :call RAction("drake::loadd")<CR>
->>>>>>> c1e6efa3109a8d2185ae17e0c37dfb2e5180cc3c
 nmap <silent> <LocalLeader>r1 :call g:SendCmdToR('source("_drake.R")')<CR>
 nmap <silent> <LocalLeader>rd :call RAction("debug")<CR>
 nmap <silent> <LocalLeader>pg :call RAction("dplyr::glimpse")<CR>
