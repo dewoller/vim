@@ -2,7 +2,7 @@
 " ---------
 
 
-let R_compldir = 'nvim-r/'
+"let R_compldir = 'nvim-r/'
 "
 echom "loading nvim-r"
 " add settings for nvim-r plugin (auto-start with .r and .rmd files)
@@ -68,12 +68,12 @@ endfunction
 nmap <silent> <LocalLeader>rr :call RenderRmarkdown()<CR>
 nmap <silent> <LocalLeader>ry :call RunShinyApp()<CR>
 nmap <silent> <LocalLeader>ny :call RunShinyApp()<CR>
-nmap <silent> <LocalLeader>rk :call RAction("targets::tar_read")<CR>
-nmap <silent> <LocalLeader>ri :call RAction("targets::tar_load")<CR>
-nmap <silent> <LocalLeader>rl :call RAction("targets::tar_load")<CR>
-nmap <silent> <LocalLeader>dk :call RAction("drake::readd")<CR>
-nmap <silent> <LocalLeader>di :call RAction("drake::loadd")<CR>
-nmap <silent> <LocalLeader>dl :call RAction("drake::loadd")<CR>
+nmap <silent> <LocalLeader>tk :call RAction("targets::tar_read")<CR>
+nmap <silent> <LocalLeader>ti :call RAction("targets::tar_load")<CR>
+nmap <silent> <LocalLeader>tl :call RAction("targets::tar_load")<CR>
+nmap <silent> <LocalLeader>rk :call RAction("drake::readd")<CR>
+nmap <silent> <LocalLeader>ri :call RAction("drake::loadd")<CR>
+nmap <silent> <LocalLeader>rl :call RAction("drake::loadd")<CR>
 nmap <silent> <LocalLeader>r1 :call g:SendCmdToR('source("_drake.R")')<CR>
 nmap <silent> <LocalLeader>rd :call RAction("debug")<CR>
 nmap <silent> <LocalLeader>pg :call RAction("dplyr::glimpse")<CR>
@@ -86,8 +86,9 @@ nmap <silent> <LocalLeader>pr :call RAction('terse::terse')
 "
 " run shiny app
 "nmap <silent> <LocalLeader>s :call g:SendCmdToR( 'shiny::runApp( "' . expand('%:p:h')  . '")')<CR>
-nmap <silent> <LocalLeader>rm :call g:SendCmdToR( 'targets::tar_make()')<CR>
-nmap <silent> <LocalLeader>dm :call g:SendCmdToR( 'drake::drake_cache(".drake")$unlock()')<CR>:call g:SendCmdToR( 'drake::r_make()')<CR>
+
+nmap <silent> <LocalLeader>tm :call g:SendCmdToR( 'targets::tar_make()')<CR>
+nmap <silent> <LocalLeader>rm :call g:SendCmdToR( 'drake::drake_cache(".drake")$unlock()')<CR>:call g:SendCmdToR( 'drake::r_make()')<CR>
 
 nmap <silent> <LocalLeader>wb :call g:SendCmdToR( 'workflowr::wflow_build( "' . expand('%')  . '")')<CR>
 nmap <silent> <LocalLeader>wp :call g:SendCmdToR( 'workflowr::wflow_publish( "' . expand('%')  . '")')<CR>
