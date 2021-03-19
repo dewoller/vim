@@ -1,14 +1,13 @@
-let s:base_font = "GuiFont! Source\ Code\ Pro:h" 
-let s:base_font = "GuiFont! Source\ Code\ Pro\ Semibold:h"
-let s:base_font = "GuiFont! Lucida\ Sans\ Typewriter:h"
+let g:dennis_base_font = "GuiFont! Source\ Code\ Pro\ Semibold:h"
+let g:dennis_base_font = "GuiFont! Lucida\ Sans\ Typewriter:h"
 let s:fontsize = 12
 "execute "GuiFont! Source\ Code\ Pro\ Semibold:h12" 
-"execute "GuiFont! Source\ Code\ Pro\ Medium:h12" 
+source ~/.vim/ginit_local.vim
 
-execute s:base_font . s:fontsize 
+execute g:dennis_base_font . s:fontsize 
 function! AdjustFontSize(amount)
   let s:fontsize = s:fontsize+a:amount
-  :execute s:base_font . s:fontsize
+  :execute g:dennis_base_font . s:fontsize
 endfunction
 
 noremap <C-ScrollWheelUp> :call AdjustFontSize(1)<CR>

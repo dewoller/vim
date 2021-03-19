@@ -46,6 +46,9 @@ Plug 'honza/vim-snippets'
 "  Plug 'mhinz/vim-signify'
  Plug 'preservim/nerdcommenter'
 
+ "Plug 'vim-scripts/SQLUtilities'
+ "Plug 'vim-scripts/Align'
+
 " Initialize plugin system
 call plug#end()
 

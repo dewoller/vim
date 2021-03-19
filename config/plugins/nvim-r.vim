@@ -1,6 +1,8 @@
 " Neomake
 " ---------
 
+
+let R_compldir = 'nvim-r/'
 "
 echom "loading nvim-r"
 " add settings for nvim-r plugin (auto-start with .r and .rmd files)
@@ -9,7 +11,6 @@ function! s:myStartR()
 	if string(g:SendCmdToR) == "function('SendCmdToR_fake')" 
 		:sleep 2
 		call StartR("R") 
-    call SendCmdToR('source("_drake.R"')
 	endif
 endfunction
 
@@ -39,7 +40,7 @@ endfunction
 
 "find the last %>% the line
 nnoremap Q mz0/%\(>\\|\$\)%<cr>$Nhv{:call SendChunkToRDennis()<cr>`z<esc>
-nnoremap Z mz0/%\(>\\|\$\)%<cr>$Nhi%>% View<esc>v{:call SendChunkToRDennis()<cr><esc>u`z<esc>
+nnoremap Z mz0/%\(>\\|\$\)%<cr>$Nhi%>% DT::datatable()<esc>v{:call SendChunkToRDennis()<cr><esc>u`z<esc>
 nnoremap V mz0/%\(>\\|\$\)%<cr>$Nhi%>% View<esc>v{:call SendChunkToRDennis()<cr><esc>u`z<esc>
 
 " run the line marked by 1
@@ -48,23 +49,32 @@ nmap <C-1> mj`1Q`j
 " make a file for this function
 nnoremap <LocalLeader>rv ? <cr>l"by$"ayw:enew<cr>"ap:s/^/R\//<cr>:s/$/.R/<cr>"ay$dd"bp:s/(/ <- function(/<cr>:s/,\? *$/ {\r\r\r}/<cr>:execute 'write' @a<cr>
 
+"imap <C-c><C-c> <esc><C-w>ji<cr>Q<cr><C-c><C-w>h
+"nmap <C-c><C-c> <C-w>ji<cr>Q<cr><C-c><C-w>h
 
 
 function! RunShinyApp() 
-    let path='runApp(' + expand('%:p:h') +  ')'
-    call g:SendCmdToR( path )
+    let cmd='shiny::runApp(r"(' . expand('%:p:h') .  ')")'
+    echo cmd
+    call g:SendCmdToR( cmd )
 endfunction
 
-function! RunShinyApp1() 
-    let path='runApp(' + expand('%:p:h') +  ')'
-    call g:SendCmdToR( path )
+function! RenderRmarkdown() 
+    let cmd='browseURL( rmarkdown::render(r"(' . expand('%:p') .  ')", output_dir="output/"))'
+    echo cmd
+    call g:SendCmdToR( cmd )
 endfunction
-"map <silent> <LocalLeader>p :r !Rscript --vanilla -e 'library(datapasta); df_paste()'<cr>
 
 nmap <silent> <LocalLeader>rk :call RAction("drake::readd")<CR>
 nmap <silent> <LocalLeader>ri :call RAction("drake::loadd")<CR>
 nmap <silent> <LocalLeader>rl :call RAction("drake::loadd")<CR>
 nmap <silent> <LocalLeader>r1 :call g:SendCmdToR('source("_load_targets.R")')<CR>
+nmap <silent> <LocalLeader>rr :call RenderRmarkdown()<CR>
+nmap <silent> <LocalLeader>ry :call RunShinyApp()<CR>
+nmap <silent> <LocalLeader>ny :call RunShinyApp()<CR>
+nmap <silent> <LocalLeader>tk :call RAction("targets::tar_read")<CR>
+nmap <silent> <LocalLeader>ti :call RAction("targets::tar_load")<CR>
+nmap <silent> <LocalLeader>tl :call RAction("targets::tar_load")<CR>
 nmap <silent> <LocalLeader>rd :call RAction("debug")<CR>
 nmap <silent> <LocalLeader>pg :call RAction("dplyr::glimpse")<CR>
 nmap <silent> <LocalLeader>ps :call RAction("summary")<CR>
@@ -76,6 +86,7 @@ nmap <silent> <LocalLeader>pr :call RAction('terse::terse')
 "
 " run shiny app
 "nmap <silent> <LocalLeader>s :call g:SendCmdToR( 'shiny::runApp( "' . expand('%:p:h')  . '")')<CR>
+nmap <silent> <LocalLeader>tm :call g:SendCmdToR( 'targets::tar_make()')<CR>
 nmap <silent> <LocalLeader>rm :call g:SendCmdToR( 'drake::drake_cache(".drake")$unlock()')<CR>:call g:SendCmdToR( 'drake::r_make()')<CR>
 
 nmap <silent> <LocalLeader>wb :call g:SendCmdToR( 'workflowr::wflow_build( "' . expand('%')  . '")')<CR>
