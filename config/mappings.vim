@@ -3,6 +3,9 @@
 nnoremap <C-C> <ESC>
 inoremap <C-C> <ESC>
 
+"reopen accidentally closed window
+map ,ru :vs#<cr><c-w>x<c-w>h
+
 " Write buffer (save)
 noremap <C-S> :w<CR>
 inoremap <C-S> <C-O>:w<CR>
