@@ -19,6 +19,11 @@ com! ShowMaps call s:ShowMaps()      " Enable :ShowMaps to call the function
 nnoremap \m :ShowMaps<CR>            " Map keys to call the function
 
 
+" so we don't lose the termina buffer
+augroup custom_term
+    autocmd!
+    autocmd TermOpen * setlocal bufhidden=hide
+augroup END
 
 augroup MyAutoCmd
         autocmd!

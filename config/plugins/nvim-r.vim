@@ -65,16 +65,16 @@ function! RenderRmarkdown()
     call g:SendCmdToR( cmd )
 endfunction
 
-nmap <silent> <LocalLeader>rk :call RAction("drake::readd")<CR>
-nmap <silent> <LocalLeader>ri :call RAction("drake::loadd")<CR>
-nmap <silent> <LocalLeader>rl :call RAction("drake::loadd")<CR>
+nmap <silent> <LocalLeader>tk :call RAction("drake::readd")<CR>
+nmap <silent> <LocalLeader>ti :call RAction("drake::loadd")<CR>
+nmap <silent> <LocalLeader>tl :call RAction("drake::loadd")<CR>
 nmap <silent> <LocalLeader>r1 :call g:SendCmdToR('source("_load_targets.R")')<CR>
 nmap <silent> <LocalLeader>rr :call RenderRmarkdown()<CR>
 nmap <silent> <LocalLeader>ry :call RunShinyApp()<CR>
 nmap <silent> <LocalLeader>ny :call RunShinyApp()<CR>
-nmap <silent> <LocalLeader>tk :call RAction("targets::tar_read")<CR>
-nmap <silent> <LocalLeader>ti :call RAction("targets::tar_load")<CR>
-nmap <silent> <LocalLeader>tl :call RAction("targets::tar_load")<CR>
+nmap <silent> <LocalLeader>rk :call RAction("targets::tar_read")<CR>
+nmap <silent> <LocalLeader>ri :call RAction("targets::tar_load")<CR>
+nmap <silent> <LocalLeader>rl :call RAction("targets::tar_load")<CR>
 nmap <silent> <LocalLeader>rd :call RAction("debug")<CR>
 nmap <silent> <LocalLeader>pg :call RAction("dplyr::glimpse")<CR>
 nmap <silent> <LocalLeader>ps :call RAction("summary")<CR>
@@ -86,8 +86,8 @@ nmap <silent> <LocalLeader>pr :call RAction('terse::terse')
 "
 " run shiny app
 "nmap <silent> <LocalLeader>s :call g:SendCmdToR( 'shiny::runApp( "' . expand('%:p:h')  . '")')<CR>
-nmap <silent> <LocalLeader>tm :call g:SendCmdToR( 'targets::tar_make()')<CR>
-nmap <silent> <LocalLeader>rm :call g:SendCmdToR( 'drake::drake_cache(".drake")$unlock()')<CR>:call g:SendCmdToR( 'drake::r_make()')<CR>
+nmap <silent> <LocalLeader>rm :call g:SendCmdToR( 'targets::tar_make()')<CR>
+nmap <silent> <LocalLeader>tm :call g:SendCmdToR( 'drake::drake_cache(".drake")$unlock()')<CR>:call g:SendCmdToR( 'drake::r_make()')<CR>
 
 nmap <silent> <LocalLeader>wb :call g:SendCmdToR( 'workflowr::wflow_build( "' . expand('%')  . '")')<CR>
 nmap <silent> <LocalLeader>wp :call g:SendCmdToR( 'workflowr::wflow_publish( "' . expand('%')  . '")')<CR>
@@ -160,16 +160,15 @@ nmap <silent> <LocalLeader>rp         :call RAction("print")<CR>
 nmap <silent> <LocalLeader>rq         :call RQuit('nosave')<CR>
 nmap <silent> <LocalLeader>rs         :call RAction("summary")<CR>
 nmap <silent> <LocalLeader>rt         :call RAction("str")<CR>
-nmap <silent> <LocalLeader>sa         :call SendSelectionToR("echo", "down", "normal")<CR>
-nmap <silent> <LocalLeader>sd         :call SendSelectionToR("silent", "down", "normal")<CR>
-nmap <silent> <LocalLeader>se         :call SendSelectionToR("echo", "stay", "NewtabInsert")<CR>
-nmap <silent> <LocalLeader>ss         :call SendSelectionToR("silent", "stay", "normal")<CR>
-nmap <silent> <LocalLeader>so         :call SendSelectionToR("echo", "stay", "normal")<CR>
 nmap <silent> <LocalLeader>vv         :call RAction("viewobj", ", howto='vsplit'")<CR>
 nmap <silent> <LocalLeader>xx         :call RComment("normal")<CR>
 nmap <silent> <LocalLeader>pp         :call SendParagraphToR("silent", "stay")<CR>
 nmap <silent> <LocalLeader>pd         :call SendParagraphToR("silent", "down")<CR>
 vnoremap <silent> <LocalLeader>ss         <Esc>:call SendSelectionToR("silent", "stay")<CR>
 nmap <silent> <LocalLeader>ch         :call SendFHChunkToR()<CR>
+
+
+map <LocalLeader>rb :!start /min  C:/Users/dwol3009/bin/standardRSetup/make.bat<cr>:edit make.log<cr>
+
 
 
