@@ -46,6 +46,9 @@ nnoremap V mz0/%\(>\\|\$\)%<cr>$Nhi%>% View<esc>v{:call SendChunkToRDennis()<cr>
 " run the line marked by 1
 nmap <C-1> mj`1Q`j
 
+" enquote a line
+nmap  <LocalLeader>qq :s/^\W*//:s/$//:s/\W\W*/g:s/^\|$/"/g
+
 " make a file for this function
 nnoremap <LocalLeader>rv ? <cr>l"by$"ayw:enew<cr>"ap:s/^/R\//<cr>:s/$/.R/<cr>"ay$dd"bp:s/(/ <- function(/<cr>:s/,\? *$/ {\r\r\r}/<cr>:execute 'write' @a<cr>
 

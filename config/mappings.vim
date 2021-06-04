@@ -18,8 +18,8 @@ nnoremap  ]b :bp<CR>
 nnoremap  [b :bn<CR>
 "delete buffer
 nnoremap <C-x>  :bd<CR>
-imap <C-d>  :b#<CR>:bd#<CR>
-nmap <C-d>  <c-o>:b#<CR>:bd#<CR>
+imap <C-d>  :b#<CR>:bd#<CR>:bn<CR>
+nmap <C-d>  <c-o>:b#<CR>:bd#<CR>:bn<CR>
 
 "switch window
 tnoremap <C-h> <C-\><C-N><C-w>h
