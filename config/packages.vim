@@ -44,7 +44,7 @@ Plug 'honza/vim-snippets'
  Plug 'tpope/vim-surround'
 "  Plug 'itchyny/lightline.vim'
 "  Plug 'mhinz/vim-signify'
- Plug 'preservim/nerdcommenter'
+" Plug 'preservim/nerdcommenter'
 
  "Plug 'vim-scripts/SQLUtilities'
  "Plug 'vim-scripts/Align'

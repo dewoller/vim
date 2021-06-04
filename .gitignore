@@ -3,3 +3,4 @@ ginit_local.vim
 THIS IS THE REAL DIRECTORY
 .cache
 autoload/plug.vim*
+.netrwhist
