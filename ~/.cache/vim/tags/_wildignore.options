@@ -1,6 +1,0 @@
-*.so
-*~
-*/.git/*
-*/.svn/*
-*/.DS_Store
-*/tmp/*
