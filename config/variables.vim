@@ -19,9 +19,6 @@ set directory=~/.vim-tmp//,/tmp//
 set dir=~/.vim-tmp//,/tmp//
 set nocursorline
 
-let $PATH = "c:\\rtools40\\usr\\bin;c:\\rtools40\\mingw64\\bin;" . $PATH
-
-
 
 set autoread
 "

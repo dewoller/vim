@@ -1,7 +1,5 @@
 let g:dennis_base_font = "GuiFont! Source\ Code\ Pro\ Semibold:h"
-"let g:dennis_base_font = "GuiFont! Lucida\ Sans\ Typewriter:h"
 let s:fontsize = 12
-"execute "GuiFont! Source\ Code\ Pro\ Semibold:h12" 
 source ~/.vim/ginit_local.vim
 
 execute g:dennis_base_font . s:fontsize 

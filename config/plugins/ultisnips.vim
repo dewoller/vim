@@ -6,7 +6,7 @@ let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 " If you want :UltiSnipsEdit to split your window.
 let g:UltiSnipsEditSplit="vertical"
 
-let g:UltiSnipsSnippetDirectories   = [ 'c:\users\dwol3009\AppData\Local\nvim\UltiSnips']
+let g:UltiSnipsSnippetDirectories   = [ '~/.vim/UltiSnips']
 
 
 " When the <Enter> key is pressed while the popup menu is visible, it only
