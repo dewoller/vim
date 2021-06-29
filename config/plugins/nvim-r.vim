@@ -71,7 +71,7 @@ endfunction
 nmap <silent> <LocalLeader>tk :call RAction("drake::readd")<CR>
 nmap <silent> <LocalLeader>ti :call RAction("drake::loadd")<CR>
 nmap <silent> <LocalLeader>tl :call RAction("drake::loadd")<CR>
-nmap <silent> <LocalLeader>r1 :call g:SendCmdToR('source("_load_targets.R")')<CR>
+nmap <silent> <LocalLeader>r1 :call g:SendCmdToR('source("_targets.R"); lapply(targets::tar_option_get("packages"), library, character.only = TRUE) ')<CR>
 nmap <silent> <LocalLeader>rr :call RenderRmarkdown()<CR>
 nmap <silent> <LocalLeader>ry :call RunShinyApp()<CR>
 nmap <silent> <LocalLeader>ny :call RunShinyApp()<CR>
